@@ -1,5 +1,6 @@
 package com.devsuperior.bds03.controllers;
 
+import static org.springframework.test.util.AssertionErrors.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -45,7 +46,7 @@ public class DepartmentControllerIT {
 	public void findAllShouldReturnAllResourcesSortedByNameWhenAdminLogged() throws Exception {
 		
 		String accessToken = tokenUtil.obtainAccessToken(mockMvc, adminUsername, adminPassword);
-		
+
 		ResultActions result =
 				mockMvc.perform(get("/departments")
 					.header("Authorization", "Bearer " + accessToken)

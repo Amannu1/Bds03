@@ -27,7 +27,8 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService service;
-	
+
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")
 	@GetMapping
 	public ResponseEntity<Page<EmployeeDTO>> findAll(Pageable pageable) {
 		PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("name"));

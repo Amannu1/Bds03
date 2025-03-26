@@ -21,7 +21,7 @@ public class TokenUtil {
 
 	@Value("${security.client-secret}")
 	private String clientSecret;
-	
+
 	public String obtainAccessToken(MockMvc mockMvc, String username, String password) throws Exception {
 
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
@@ -31,7 +31,7 @@ public class TokenUtil {
 		params.add("password", password);
 
 		ResultActions result = mockMvc
-				.perform(post("/oauth/token")
+				.perform(post("/oauth2/token")
 						.params(params)
 						.with(httpBasic(clientId, clientSecret))
 						.accept("application/json;charset=UTF-8"))
@@ -42,5 +42,6 @@ public class TokenUtil {
 
 		JacksonJsonParser jsonParser = new JacksonJsonParser();
 		return jsonParser.parseMap(resultString).get("access_token").toString();
+
 	}
 }
