@@ -3,23 +3,21 @@ package com.devsuperior.bds03.dto;
 import java.io.Serializable;
 
 import com.devsuperior.bds03.entities.Employee;
+import jakarta.validation.constraints.*;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public class EmployeeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 
-	@NotBlank(message = "Name can not be blank.")
+	@NotBlank(message = "Campo requerido")
 	private String name;
 
-	@Email(message = "Email should be valid.")
+	@Email(message = "Email inválido")
 	private String email;
 
-	@NotNull(message = "Department can not be null.")
+	@NotNull(message = "Campo requerido")
 	private Long departmentId;
 	
 	public EmployeeDTO() {
